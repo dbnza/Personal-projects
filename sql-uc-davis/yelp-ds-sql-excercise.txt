@@ -1,0 +1,940 @@
+Data Scientist Role Play: Profiling and Analyzing the Yelp Dataset Coursera Worksheet
+
+This is a 2-part assignment. In the first part, you are asked a series of questions that will help you profile and understand the data just like a data scientist would. For this first part of the assignment, you will be assessed both on the correctness of your findings, as well as the code you used to arrive at your answer. You will be graded on how easy your code is to read, so remember to use proper formatting and comments where necessary.
+
+In the second part of the assignment, you are asked to come up with your own inferences and analysis of the data for a particular research question you want to answer. You will be required to prepare the dataset for the analysis you choose to do. As with the first part, you will be graded, in part, on how easy your code is to read, so use proper formatting and comments to illustrate and communicate your intent as required.
+
+For both parts of this assignment, use this "worksheet." It provides all the questions you are being asked, and your job will be to transfer your answers and SQL coding where indicated into this worksheet so that your peers can review your work. You should be able to use any Text Editor (Windows Notepad, Apple TextEdit, Notepad ++, Sublime Text, etc.) to copy and paste your answers. If you are going to use Word or some other page layout application, just be careful to make sure your answers and code are lined appropriately.
+In this case, you may want to save as a PDF to ensure your formatting remains intact for you reviewer.
+
+
+
+Part 1: Yelp Dataset Profiling and Understanding
+
+1. Profile the data by finding the total number of records for each of the tables below:
+
+Note: [It is slightly odd but all the tables have exactly same 10000 rows, Even when I do SELECT * FROM ..... It says 25 out of 10000, So I guess in this version that is setup in coursera all the tables have same row numbers]
+	
+i. Attribute table = 10000
+	Query:
+	SELECT COUNT(*) FROM Attribute;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+
+ii. Business table = 10000
+	Query:
+	SELECT COUNT(*) FROM Business;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+iii. Category table = 10000
+	Query:
+	SELECT COUNT(*) FROM Category;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+iv. Checkin table = 10000
+	Query:
+	SELECT COUNT(*) FROM Checkin;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+v. elite_years table = 10000
+	Query:
+	SELECT COUNT(*) FROM elite_years;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+vi. friend table = 10000
+	Query:
+	SELECT COUNT(*) FROM friend;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+vii. hours table = 10000
+	Query:
+	SELECT COUNT(*) FROM hours;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+viii. photo table = 10000
+	Query:
+	SELECT COUNT(*) FROM photo;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+ix. review table = 10000
+	Query:
+	SELECT COUNT(*) FROM review;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+x. tip table = 10000
+	Query:
+	SELECT COUNT(*) FROM tip;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+xi. user table = 10000
+	Query:
+	SELECT COUNT(*) FROM user;
+	+----------+
+	| COUNT(*) |
+	+----------+
+	|    10000 |
+	+----------+
+	
+
+
+2. Find the total distinct records by either the foreign key or primary key for each table. If two foreign keys are listed in the table, please specify which foreign key.
+
+i. Business = 10000
+
+	Query:
+	SELECT COUNT(DISTINCT id) FROM Business;
+	+--------------------+
+	| COUNT(DISTINCT id) |
+	+--------------------+
+	|              10000 |
+	+--------------------+
+
+ii. Hours = 2052 [hours], 1562 [business_id]
+
+	Query: 
+	SELECT COUNT(DISTINCT hours) FROM hours;
+	+-----------------------+
+	| COUNT(DISTINCT hours) |
+	+-----------------------+
+	|                  2052 |
+	+-----------------------+
+	Query 2: 
+	SELECT COUNT(DISTINCT business_id) FROM hours;
+	+-----------------------------+
+	| COUNT(DISTINCT business_id) |
+	+-----------------------------+
+	|                        1562 |
+	+-----------------------------+
+
+
+iii. Category = 2643
+
+	Query: 
+	SELECT COUNT(DISTINCT business_id) FROM Category;
+	+-----------------------------+
+	| COUNT(DISTINCT business_id) |
+	+-----------------------------+
+	|                        2643 |
+	+-----------------------------+
+
+iv. Attribute = 1115
+	
+	Query: 
+	SELECT COUNT(DISTINCT business_id) FROM Attribute;
+	+-----------------------------+
+	| COUNT(DISTINCT business_id) |
+	+-----------------------------+
+	|                        1115 |
+	+-----------------------------+
+
+v. Review = 8090
+
+	Query: 
+	SELECT COUNT(DISTINCT business_id) FROM Review;
+	+-----------------------------+
+	| COUNT(DISTINCT business_id) |
+	+-----------------------------+
+	|                        8090 |
+	+-----------------------------+
+
+vi. Checkin = 493
+
+	Query: 
+	SELECT COUNT(DISTINCT business_id) FROM Checkin;
+	+-----------------------------+
+	| COUNT(DISTINCT business_id) |
+	+-----------------------------+
+	|                         493 |
+	+-----------------------------+
+
+vii. Photo = 6493
+
+	Query: 
+	SELECT COUNT(DISTINCT business_id) FROM Photo;
+	+-----------------------------+
+	| COUNT(DISTINCT business_id) |
+	+-----------------------------+
+	|                        6493 |
+	+-----------------------------+
+
+viii. Tip = 3979
+
+	Query: 
+	SELECT COUNT(DISTINCT business_id) FROM Tip;
+	+-----------------------------+
+	| COUNT(DISTINCT business_id) |
+	+-----------------------------+
+	|                        3979 |
+	+-----------------------------+
+
+ix. User = 10000 
+	
+	Query: 
+	SELECT COUNT(DISTINCT id) FROM User;
+	+--------------------+
+	| COUNT(DISTINCT id) |
+	+--------------------+
+	|              10000 |
+	+--------------------+
+
+x. Friend = 11
+
+	Query: 
+	SELECT COUNT(DISTINCT user_id) FROM Friend;
+	+-----------------------------+
+	| COUNT(DISTINCT user_id)     |
+	+-----------------------------+
+	|                          11 |
+	+-----------------------------+
+
+xi. Elite_years = 2780
+
+	Query: 
+	SELECT COUNT(DISTINCT user_id) FROM Elite_years;
+	+-----------------------------+
+	| COUNT(DISTINCT user_id)     |
+	+-----------------------------+
+	|                        2780 |
+	+-----------------------------+
+
+
+Note: Primary Keys are denoted in the ER-Diagram with a yellow key icon.	
+
+
+
+3. Are there any columns with null values in the Users table? Indicate "yes," or "no."
+
+	Answer: no
+	
+	
+	SQL code used to arrive at answer: 
+	
+	Query:
+
+	SELECT 'id' AS column_name, SUM(CASE WHEN id IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'name' AS column_name, SUM(CASE WHEN name IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'review_count' AS column_name, SUM(CASE WHEN review_count IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'yelping_since' AS column_name, SUM(CASE WHEN yelping_since IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'useful' AS column_name, SUM(CASE WHEN useful IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'funny' AS column_name, SUM(CASE WHEN funny IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'cool' AS column_name, SUM(CASE WHEN cool IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'fans' AS column_name, SUM(CASE WHEN fans IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'average_stars' AS column_name, SUM(CASE WHEN average_stars IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_hot' AS column_name, SUM(CASE WHEN compliment_hot IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_more' AS column_name, SUM(CASE WHEN compliment_more IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_profile' AS column_name, SUM(CASE WHEN compliment_profile IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_cute' AS column_name, SUM(CASE WHEN compliment_cute IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_list' AS column_name, SUM(CASE WHEN compliment_list IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_note' AS column_name, SUM(CASE WHEN compliment_note IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_plain' AS column_name, SUM(CASE WHEN compliment_plain IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_cool' AS column_name, SUM(CASE WHEN compliment_cool IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_funny' AS column_name, SUM(CASE WHEN compliment_funny IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_writer' AS column_name, SUM(CASE WHEN compliment_writer IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user
+UNION ALL
+SELECT 'compliment_photos' AS column_name, SUM(CASE WHEN compliment_photos IS NULL THEN 1 ELSE 0 END) AS null_count
+FROM user;
+
+
+	Output:
+	+--------------------+------------+
+	| column_name        | null_count |
+	+--------------------+------------+
+	| id                 |          0 |
+	| name               |          0 |
+	| review_count       |          0 |
+	| yelping_since      |          0 |
+	| useful             |          0 |
+	| funny              |          0 |
+	| cool               |          0 |
+	| fans               |          0 |
+	| average_stars      |          0 |
+	| compliment_hot     |          0 |
+	| compliment_more    |          0 |
+	| compliment_profile |          0 |
+	| compliment_cute    |          0 |
+	| compliment_list    |          0 |
+	| compliment_note    |          0 |
+	| compliment_plain   |          0 |
+	| compliment_cool    |          0 |
+	| compliment_funny   |          0 |
+	| compliment_writer  |          0 |
+	| compliment_photos  |          0 |
+	+--------------------+------------+
+
+
+	
+4. For each table and column listed below, display the smallest (minimum), largest (maximum), and average (mean) value for the following fields:
+
+	i. Table: Review, Column: Stars
+	
+		min:	1	max:	5	avg: 3.7082
+		
+	Query:
+	SELECT MIN(Stars) AS min, MAX(Stars) AS max, AVG(Stars) AS avg FROM Review;
+
+	ii. Table: Business, Column: Stars
+	
+		min:	1	max:	5	avg: 3.6549
+		
+	Query:
+	SELECT MIN(Stars) AS min, MAX(Stars) AS max, AVG(Stars) AS avg FROM Business;
+
+	
+	iii. Table: Tip, Column: Likes
+	
+		min:	0	max:	2	avg: 0.0144
+
+	Query:
+	SELECT MIN(Likes) AS min, MAX(Likes) AS max, AVG(Likes) AS avg FROM Tip;
+		
+	
+	iv. Table: Checkin, Column: Count
+	
+		min:	1	max:	53	avg: 1.9414
+		
+	Query:
+	SELECT MIN(Count) AS min, MAX(Count) AS max, AVG(Count) AS avg FROM Checkin;
+
+	
+	v. Table: User, Column: Review_count
+	
+		min:	0	max:	2000	avg: 24.2995
+
+	Query:
+	SELECT MIN(Review_count) AS min, MAX(Review_count) AS max, AVG(Review_count) AS avg FROM User;
+
+		
+
+
+5. List the cities with the most reviews in descending order:
+
+	SQL code used to arrive at answer:
+	
+	Query:
+	
+	SELECT city, SUM(review_count) AS 'review_count' FROM business
+	GROUP BY city
+	ORDER BY review_count DESC;
+
+	Copy and Paste the Result Below:
+
++-----------------+----------------+
+| city            |   review_count |
++-----------------+----------------+
+| Las Vegas       |          82854 |
+| Phoenix         |          34503 |
+| Toronto         |          24113 |
+| Scottsdale      |          20614 |
+| Charlotte       |          12523 |
+| Henderson       |          10871 |
+| Tempe           |          10504 |
+| Pittsburgh      |           9798 |
+| Montréal        |           9448 |
+| Chandler        |           8112 |
+| Mesa            |           6875 |
+| Gilbert         |           6380 |
+| Cleveland       |           5593 |
+| Madison         |           5265 |
+| Glendale        |           4406 |
+| Mississauga     |           3814 |
+| Edinburgh       |           2792 |
+| Peoria          |           2624 |
+| North Las Vegas |           2438 |
+| Markham         |           2352 |
+| Champaign       |           2029 |
+| Stuttgart       |           1849 |
+| Surprise        |           1520 |
+| Lakewood        |           1465 |
+| Goodyear        |           1155 |
++-----------------+----------------+
+(Output limit exceeded, 25 of 362 total rows shown)
+	
+
+	
+6. Find the distribution of star ratings to the business in the following cities:
+
+i. Avon
+
+SQL code used to arrive at answer:
+
+SELECT Stars AS star_rating, COUNT(Stars) AS count
+FROM Business
+WHERE City = 'Avon'
+GROUP BY Stars
+ORDER BY Stars DESC;
+
+
+Copy and Paste the Resulting Table Below (2 columns – star rating and count):
+
++-------------+-------+
+| star_rating | count |
++-------------+-------+
+|         5.0 |     1 |
+|         4.5 |     1 |
+|         4.0 |     2 |
+|         3.5 |     3 |
+|         2.5 |     2 |
+|         1.5 |     1 |
++-------------+-------+
+
+
+
+ii. Beachwood
+
+SQL code used to arrive at answer
+
+SELECT Stars AS star_rating, COUNT(Stars) AS count
+FROM Business
+WHERE City = 'Beachwood'
+GROUP BY Stars
+ORDER BY Stars DESC;
+
+Copy and Paste the Resulting Table Below (2 columns – star rating and count):
+
++-------------+-------+
+| star_rating | count |
++-------------+-------+
+|         5.0 |     5 |
+|         4.5 |     2 |
+|         4.0 |     1 |
+|         3.5 |     2 |
+|         3.0 |     2 |
+|         2.5 |     1 |
+|         2.0 |     1 |
++-------------+-------+
+
+
+7. Find the top 3 users based on their total number of reviews:
+		
+	SQL code used to arrive at answer:
+	
+		SELECT id, Name, Review_count
+		FROM User
+		ORDER BY Review_count DESC
+		LIMIT 3;
+
+	Copy and Paste the Result Below:
+		
+		+------------------------+--------+--------------+
+		| id                     | name   | review_count |
+		+------------------------+--------+--------------+
+		| -G7Zkl1wIWBBmD0KRy_sCw | Gerald |         2000 |
+		| -3s52C4zL_DHRK0ULG6qtg | Sara   |         1629 |
+		| -8lbUNlXVSoXqaRRiHiSNg | Yuri   |         1339 |
+		+------------------------+--------+--------------+
+
+8. Does posing more reviews correlate with more fans?
+	
+
+	Please explain your findings and interpretation of the results:
+	
+	Answer: Yes, there seem to be correlation between number of reviews and number of fans. But due to te distribution 
+		of [like in lower Fan range is way greater than higher fans range]. In order to see the correlation, I have 
+		divided the data into 10 range and each range increasing by 200[for example range 1 is 0 to 200 and range 2 is 200 to 400]
+		Then when I got the average fan number for each range, I plotted it using python tools to see the correlation.
+		As I am submitting my result as .txt file, I opted for a text based plotting tool in python. As you can see in the plot
+		and trend line below, range 1 to 4 [number of review 0 to 800] shows good correlation with the number of fans.
+		
+	Conclusion: So I conclude that within 0 to 800 range there is a good correlation that we can even say that more reviews could
+			mean more Fans.
+			
+	Additional: The graph here does not look good for some reason, You can try it in your system with the code provided.
+			Please make sure to [pip install tplot] & [pip install scipy] 
+		
+	Query to get the data:
+		SELECT
+  		Review_range,
+  		AVG(fans) AS average_number_of_fans
+		FROM (
+  		SELECT
+    		CASE
+      		WHEN review_count BETWEEN 0 AND 200 THEN 1
+      		WHEN review_count > 201 AND review_count <= 400 THEN 2
+      		WHEN review_count > 401 AND review_count <= 600 THEN 3
+      		WHEN review_count > 601 AND review_count <= 800 THEN 4
+      		WHEN review_count > 801 AND review_count <= 1000 THEN 5
+      		WHEN review_count > 1001 AND review_count <= 1200 THEN 6
+      		WHEN review_count > 1201 AND review_count <= 1400 THEN 7
+      		WHEN review_count > 1401 AND review_count <= 1600 THEN 8
+      		WHEN review_count > 1601 AND review_count <= 1800 THEN 9
+      		WHEN review_count > 1801 AND review_count <= 2001 THEN 10
+      		ELSE 11
+    		END AS Review_range,
+    		fans
+  		FROM user
+		) AS subquery
+		GROUP BY Review_range
+		ORDER BY Review_range ASC;
+		
+	Query Output:
+		+--------------+------------------------+
+		| Review_range | average_number_of_fans |
+		+--------------+------------------------+
+		|            1 |     0.6717885679164106 |
+		|            2 |     20.847560975609756 |
+		|            3 |      32.12820512820513 |
+		|            4 |      72.82352941176471 |
+		|            5 |                  139.1 |
+		|            6 |     143.66666666666666 |
+		|            7 |                  101.0 |
+		|            9 |                   50.0 |
+		|           10 |                  253.0 |
+		+--------------+------------------------+
+		
+	Python Code to do the visualization:
+	
+		import tplot
+		from scipy.stats import linregress
+		# Data
+		data = [
+   		 (1, 0.6717885679164106),
+  		 (2, 20.847560975609756),
+    		(3, 32.12820512820513),
+    		(4, 72.82352941176471),
+    		(5, 139.1),
+    		(6, 143.66666666666666),
+    		(7, 101.0),
+    		(9, 50.0),
+    		(10, 253.0)
+		]
+		# Split the data into two lists
+		Review_range = [row[0] for row in data]
+		average_number_of_fans = [row[1] for row in data]
+		# Calculate the trend line (best-fit line)
+		slope, intercept, r_value, p_value, std_err = linregress(Review_range, average_number_of_fans)
+		# Calculate the Y values of the trend line
+		trendline = [(slope * xi + intercept) for xi in Review_range]
+		# Trend line equation
+		trend_equation = f"Y = {slope:.2f}X + ({intercept:.2f})"
+		# Create the scatter plot
+		fig = tplot.Figure(
+		xlabel="Review Range by 200",
+    		ylabel="Average NUmber Of Fans",
+    		title = "Correlation Between Review and Fans",
+    		legendloc="topleft",)
+		fig.scatter(Review_range, average_number_of_fans)
+		fig.line(Review_range, average_number_of_fans, color='red', label="ScatterpPLT")
+		fig.line(Review_range, trendline, color="blue", label="Trendline")
+		# Display the plot
+		fig.show()
+		print(trend_equation)
+		
+	Output of Python Code:
+		               Correlation Between Review and Fans                
+                                                                  
+  300┤┌────Legend───┐                                             
+     ││⠄ ScatterpPLT│                                             
+     ││⠄ Trendline  │                                             
+A    │└─────────────┘                                             
+v    │                                                           ⢠
+e 250┤                                                           ⡎
+r    │                                                          ⢀⠇
+a    │                                                          ⢸ 
+g    │                                                          ⡎ 
+e 200┤                                                         ⢠⠃ 
+     │                                                         ⢸  
+N    │                                                        ⢀⡧⠔⠊
+U    │                                                     ⡠⠔⠊⢱⠁  
+m 150┤                                                 ⣀⠤⠒⠉   ⡸   
+b    │                          ⢀⣀⡠⠤⠤⠤⠒⠒⢄          ⣀⠤⠒⠉       ⡇   
+e    │                         ⢠⠃       ⠈⠢⡀    ⣀⠤⠒⠉          ⢰⠁   
+r    │                        ⢠⠃          ⠘⣄⠤⠒⠉              ⡜    
+     │                       ⢠⠃        ⢀⠤⠒⠉ ⠑⡄               ⡇    
+O 100┤                      ⡰⠁     ⢀⡠⠔⠊⠁     ⠈⠢⢄            ⢸     
+f    │                     ⡰⠁  ⢀⡠⠔⠊⠁            ⠉⠢⣀         ⡎     
+     │                    ⡰⢁⡠⠔⠊⠁                   ⠑⠢⣀     ⢀⠇     
+F    │                  ⣠⠮⠊⠁                          ⠑⠢⡀  ⢸      
+a    │              ⣀⠤⢒⠏                                ⠈⠑⠤⡎      
+n  50┤          ⣀⠤⠒⠉⢀⠔⠁                                   •       
+s    │      ⣀⠤⠒⢉⣀⡠⠤⠒⠁                                             
+     │  ⣀⠤⠒⣉⠤⠒⠉⠁                                                  
+     │⠐⠉⣀⠔⠊                                                       
+    0┤⠐⠉                                                          
+      ┬──────┬─────┬──────┬─────┬──────┬─────┬──────┬─────┬──────┬
+      1      2     3      4     5      6     7      8     9     10
+                          Review Range by 200                     
+Y = 18.90X-8.32
+
+		
+	
+	
+9. Are there more reviews with the word "love" or with the word "hate" in them?
+
+	Answer: Yes By quite big margin
+		Love : 1780 and Hate : 232
+	
+	SQL code used to arrive at answer:
+	
+		SELECT 'Love' AS Sentiment, COUNT(text) AS Count
+		FROM review
+		WHERE text LIKE '%love%'
+		UNION
+		SELECT 'Hate' AS Sentiment, COUNT(text) AS Count
+		FROM review
+		WHERE text LIKE '%hate%';
+		
+	Output:
+		
+		+-----------+-------+
+		| Sentiment | Count |
+		+-----------+-------+
+		| Hate      |   232 |
+		| Love      |  1780 |
+		+-----------+-------+
+
+	
+	
+10. Find the top 10 users with the most fans:
+
+	SQL code used to arrive at answer:
+	
+		SELECT name, fans
+		FROM user
+		ORDER BY fans DESC
+		LIMIT 10;
+	
+	Copy and Paste the Result Below:
+		
+		+-----------+------+
+		| name      | fans |
+		+-----------+------+
+		| Amy       |  503 |
+		| Mimi      |  497 |
+		| Harald    |  311 |
+		| Gerald    |  253 |
+		| Christine |  173 |
+		| Lisa      |  159 |
+		| Cat       |  133 |
+		| William   |  126 |
+		| Fran      |  124 |
+		| Lissa     |  120 |
+		+-----------+------+
+
+	
+		
+
+Part 2: Inferences and Analysis
+
+1. Pick one city and category of your choice and group the businesses in that city or category by their overall star rating. Compare the businesses with 2-3 stars to the businesses with 4-5 stars and answer the following questions. Include your code.
+
+Chosen city and category:
+	
+	I initially chose below combination, but there were no data for this combination and i chose restaurant and las vegas instead
+		City: Scottsdale
+		Category: Automotive
+	
+	Chose City: Las Vegas
+	Chosen Category: Restaurants
+	
+i. Do the two groups you chose to analyze have a different distribution of hours?
+
+	Table1:
+	+-----------+-------------+---------------------+----------+
+	| city      | category    | name                | Ratings  |
+	+-----------+-------------+---------------------+----------+
+	| Las Vegas | Restaurants | Wingstop            | 2-3 Star |
+	| Las Vegas | Restaurants | Big Wong Restaurant | 4-5 Star |
+	| Las Vegas | Restaurants | Jacques Cafe        | 4-5 Star |
+	| Las Vegas | Restaurants | Hibachi-San         | 4-5 Star |
+	+-----------+-------------+---------------------+----------+
+	
+	There seem to be only 4 restaurants that has 2 to 5 ratings and one of them is 2 to 3 and the rest are 4 to 5.
+	
+	Table2: Restaurants with 4-5 star ratings [hours distribution]
+	
++-----------------------+-----------------------+----------+
+| Las Vegas Restaurants | hours                 | Ratings  |
++-----------------------+-----------------------+----------+
+| Big Wong Restaurant   | Monday|10:00-23:00    | 4-5 Star |
+| Big Wong Restaurant   | Tuesday|10:00-23:00   | 4-5 Star |
+| Big Wong Restaurant   | Friday|10:00-23:00    | 4-5 Star |
+| Big Wong Restaurant   | Wednesday|10:00-23:00 | 4-5 Star |
+| Big Wong Restaurant   | Thursday|10:00-23:00  | 4-5 Star |
+| Big Wong Restaurant   | Sunday|10:00-23:00    | 4-5 Star |
+| Big Wong Restaurant   | Saturday|10:00-23:00  | 4-5 Star |
+| Jacques Cafe          | Monday|11:00-20:00    | 4-5 Star |
+| Jacques Cafe          | Tuesday|11:00-20:00   | 4-5 Star |
+| Jacques Cafe          | Friday|11:00-20:00    | 4-5 Star |
+| Jacques Cafe          | Wednesday|11:00-20:00 | 4-5 Star |
+| Jacques Cafe          | Thursday|11:00-20:00  | 4-5 Star |
+| Jacques Cafe          | Sunday|8:00-14:00     | 4-5 Star |
+| Jacques Cafe          | Saturday|11:00-20:00  | 4-5 Star |
++-----------------------+-----------------------+----------+
+
+	Table3: Restaurants with 2-3 star ratings [hour distibution]
+	
++-----------------------+----------------------+----------+
+| Las Vegas Restaurants | hours                | Ratings  |
++-----------------------+----------------------+----------+
+| Wingstop              | Monday|11:00-0:00    | 2-3 Star |
+| Wingstop              | Tuesday|11:00-0:00   | 2-3 Star |
+| Wingstop              | Friday|11:00-0:00    | 2-3 Star |
+| Wingstop              | Wednesday|11:00-0:00 | 2-3 Star |
+| Wingstop              | Thursday|11:00-0:00  | 2-3 Star |
+| Wingstop              | Sunday|11:00-0:00    | 2-3 Star |
+| Wingstop              | Saturday|11:00-0:00  | 2-3 Star |
++-----------------------+----------------------+----------+
+
+Conclusion: Yes, the two groups have slightly different opening and closing hours, higher reted restraunts opened earlier and closed earlier
+		compared to the low rated one. But, I canot clearly say that opening late and closing late results in low rating. As the data
+		is not many to derice desicive conclusion.
+
+ii. Do the two groups you chose to analyze have a different number of reviews?
+         
+Table 4: Review count for restaurants Las Vegas
++--------------------------+--------------+----------+
+| Las Vegas Restaurants    | review_count | Ratings  |
++--------------------------+--------------+----------+
+| Wingstop                 |          123 | 2-3 Star |
+| Big Wong Restaurant      |          768 | 4-5 Star |
+| Jacques Cafe             |          168 | 4-5 Star |
+| Hibachi-San              |            3 | 4-5 Star |
++--------------------------+--------------+----------+
+
+Conclusion: Yes, there is a difference in reviews 4-5 star rated restaurants had on average 313 reviews while the 2-3 range had 123.
+		But yet again the data is not big enough to conclude that more review results in greater ranking as in real life 
+		there could be a case where a restaurant has thousand of review and a bad rating because those reviews were all bad
+		reviews.
+         
+iii. Are you able to infer anything from the location data provided between these two groups? Explain.
+
+	Table5: Restaurants with their neighborhood and ratings
+	
++-----------------------+--------------+----------+
+| Las Vegas Restaurant  | neighborhood | Ratings  |
++-----------------------+--------------+----------+
+| Wingstop              |              | 2-3 Star |
+| Big Wong Restaurant   | Chinatown    | 4-5 Star |
+| Jacques Cafe          | Summerlin    | 4-5 Star |
+| Hibachi-San           | Eastside     | 4-5 Star |
++-----------------------+--------------+----------+
+
+Conclusion: No I am not, because the restaurant that has 2-3 star rating does not have neighborhood[data], thus does not give any lead.
+
+SQL code used for analysis:
+
+Query for table 1:
+		
+	SELECT b.city, c.category, b.name,
+    		CASE
+       			WHEN b.stars BETWEEN 2 AND 3 THEN '2-3 Star'
+        		WHEN b.stars BETWEEN 4 AND 5 THEN '4-5 Star'
+    		END AS Ratings
+	FROM business b INNER JOIN category c 
+	ON b.id = c.business_id
+	WHERE Ratings IS NOT NULL AND b.city = 'Las Vegas' AND c.category = 'Restaurants'
+	ORDER BY c.category;
+	
+Query for table 2:
+SELECT b.name AS 'Las Vegas Restaurants', h.hours,
+    CASE
+        WHEN b.stars BETWEEN 2 AND 3 THEN '2-3 Star'
+        WHEN b.stars BETWEEN 4 AND 5 THEN '4-5 Star'
+    END AS Ratings
+FROM (business b INNER JOIN category c) INNER JOIN hours h
+ON b.id = c.business_id AND b.id = h.business_id
+WHERE Ratings IS NOT NULL AND c.category = 'Restaurants' AND 
+    b.city = 'Las Vegas' AND Ratings = '4-5 Star';
+    
+    
+Query for Table3:
+
+SELECT b.name AS 'Las Vegas Restaurants', h.hours,
+    CASE
+        WHEN b.stars BETWEEN 2 AND 3 THEN '2-3 Star'
+        WHEN b.stars BETWEEN 4 AND 5 THEN '4-5 Star'
+    END AS Ratings
+FROM (business b INNER JOIN category c) INNER JOIN hours h
+ON b.id = c.business_id AND b.id = h.business_id
+WHERE Ratings IS NOT NULL AND c.category = 'Restaurants' AND 
+    b.city = 'Las Vegas' AND Ratings = '2-3 Star';
+    
+Query for Table4:
+
+SELECT b.name AS 'Las Vegas Restaurants', review_count,
+    CASE
+        WHEN b.stars BETWEEN 2 AND 3 THEN '2-3 Star'
+        WHEN b.stars BETWEEN 4 AND 5 THEN '4-5 Star'
+    END AS Ratings
+FROM business b INNER JOIN category c 
+ON b.id = c.business_id
+WHERE Ratings IS NOT NULL AND c.category = 'Restaurants' AND b.city = 'Las Vegas'
+ORDER BY Ratings;
+
+Query for Table5:
+
+SELECT b.name AS 'Las Vegas Restaurant ', neighborhood,
+    CASE
+        WHEN b.stars BETWEEN 2 AND 3 THEN '2-3 Star'
+        WHEN b.stars BETWEEN 4 AND 5 THEN '4-5 Star'
+    END AS Ratings
+FROM business b INNER JOIN category c 
+ON b.id = c.business_id
+WHERE neighborhood IS NOT NULL AND Ratings IS NOT NULL AND c.category = 'Restaurants' AND b.city = 'Las Vegas'
+ORDER BY Ratings;
+
+------------------------------------------------------------------------
+		
+2. Group business based on the ones that are open and the ones that are closed. What differences can you find between the ones that are still open and the ones that are closed? List at least two differences and the SQL code you used to arrive at your answer.
+		
+i. Difference 1:
+         
+         Answer: The number of open businesses are way more than the ones that are closed, and it seems that the closed businesses had
+         	slightly less average star ratings.
+         
+ii. Difference 2:
+         
+         Answer: The Closed businesses had less reviews compared to the ones that are open
+         
+         
+SQL code used for analysis:
+
+Query:
+SELECT 
+  is_open, 
+  COUNT(name) AS 'Number_of_Businesses', 
+  AVG(review_count), AVG(stars)
+FROM business 
+WHERE name IS NOT NULL
+GROUP BY is_open;
+
+Result:
+
++---------+----------------------+--------------------+-------------------+
+| is_open | Number_of_Businesses |  AVG(review_count) |        AVG(stars) |
++---------+----------------------+--------------------+-------------------+
+|       0 |                 1520 | 23.198026315789473 | 3.520394736842105 |
+|       1 |                 8480 | 31.757075471698112 | 3.679009433962264 |
++---------+----------------------+--------------------+-------------------+
+	
+---------------------------------------------------------------------------------------
+
+3. For this last part of your analysis, you are going to choose the type of analysis you want to conduct on the Yelp dataset and are going to prepare the data for analysis.
+
+Ideas for analysis include: Parsing out keywords and business attributes for sentiment analysis, clustering businesses to find commonalities or anomalies between them, predicting the overall star rating for a business, predicting the number of fans a user will have, and so on. These are just a few examples to get you started, so feel free to be creative and come up with your own problem you want to solve. Provide answers, in-line, to all of the following:
+	
+i. Indicate the type of analysis you chose to do:
+         
+         I would like to try to see how the [rating, review number, cool, funny, useful reviews] effect whether the business will be closed or not.
+         If I can train Neural Network with this data, I may be able to predict whether a business is closed or not.
+         
+ii. Write 1-2 brief paragraphs on the type of data you will need for your analysis and why you chose that data:
+                           
+         I will need [rating, review number, cool, funny, useful reviews] along with the closed or not indicator [1 or 0]. I chose these parameters
+         because they are needed to see if there is any connection between these parameters to business closing or not.
+         
+iii. Output of your finished dataset:
+
++--------+--------------+-------------+--------------+---------------+--------+
+| Rating | ReviewNumber | CoolReviews | FunnyReviews | UsefulReviews | IsOpen |
++--------+--------------+-------------+--------------+---------------+--------+
+|    4.0 |            3 |           0 |            0 |             0 |      1 |
+|    3.0 |           14 |           0 |            0 |             0 |      1 |
+|    3.5 |            3 |           0 |            0 |             0 |      1 |
+|    3.5 |            7 |           0 |            0 |             0 |      1 |
+|    3.5 |           29 |           4 |            6 |             6 |      1 |
+|    4.0 |           12 |           0 |            0 |             0 |      1 |
+|    4.5 |            5 |           0 |            0 |             0 |      1 |
+|    4.5 |           32 |           0 |            0 |             0 |      1 |
+|    5.0 |            3 |           0 |            0 |             0 |      1 |
+|    5.0 |            9 |           0 |            0 |             0 |      1 |
+|    5.0 |           17 |           0 |            0 |             0 |      1 |
+|    4.5 |           16 |           0 |            0 |             0 |      1 |
+|    2.5 |            3 |           0 |            0 |             0 |      0 |
+|    3.0 |           19 |           0 |            0 |             0 |      0 |
+|    3.0 |          123 |           0 |            0 |             0 |      1 |
+|    3.5 |           63 |           0 |            0 |             0 |      1 |
+|    4.0 |          105 |           0 |            0 |             0 |      1 |
+|    4.0 |          168 |           0 |            0 |             0 |      0 |
+|    2.0 |            3 |           0 |            0 |             0 |      0 |
+|    3.0 |           60 |           0 |            0 |             0 |      1 |
+|    3.5 |           27 |           0 |            0 |             0 |      1 |
+|    3.5 |           74 |           0 |            0 |             0 |      1 |
+|    4.0 |           30 |           0 |            0 |             0 |      1 |
+|    4.0 |           37 |           0 |            0 |             0 |      1 |
+|    4.0 |           94 |           0 |            0 |             0 |      1 |
++--------+--------------+-------------+--------------+---------------+--------+
+(Output limit exceeded, 25 of 677 total rows shown)
+         
+         
+iv. Provide the SQL code you used to create your final dataset:
+
+SELECT
+    b.stars AS Rating,
+    b.review_count AS ReviewNumber,
+    COALESCE(SUM(r.cool), 0) AS CoolReviews,
+    COALESCE(SUM(r.funny), 0) AS FunnyReviews,
+    COALESCE(SUM(r.useful), 0) AS UsefulReviews,
+    b.is_open AS IsOpen
+FROM business b
+INNER JOIN category c ON b.id = c.business_id
+LEFT JOIN review r ON b.id = r.business_id
+GROUP BY c.category, b.stars, b.review_count, b.is_open;
+
