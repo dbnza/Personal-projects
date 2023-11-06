@@ -26,10 +26,14 @@ The data used for this analysis is sourced from historical cryptocurrency market
 
 The analysis will be conducted using data manipulation and visualization techniques. Key steps in the project include:
 
-1. Data Preprocessing: Cleaning and organizing the historical cryptocurrency data.
-2. Exploratory Data Analysis: Analyzing the historical performance of BTC, Dogecoin, and Ravencoin.
-3. Portfolio Optimization: Utilizing financial modeling to recommend an optimal allocation for each cryptocurrency.
-4. Visualization: Creating informative visualizations to present the results.
+1. **Ask:** The initial phase involves formulating essential questions and understanding the problem's context. Effective communication with stakeholders ensures a comprehensive understanding.
+2. **Prepare:** The second phase focuses on data collection and organization, including metric identification and data source assessment.
+3. **Process:** Data cleaning and refinement are addressed in the third phase to maintain data integrity.
+4. **Analyze:** The analysis phase explores data to uncover relationships, trends, and patterns to enhance decision-making.
+5. **Share:** Findings are communicated effectively using visualization techniques to facilitate understanding.
+6. **Act:** The final phase involves acting on insights and providing actionable recommendations to address business challenges.
+
+Adherence to these structured phases ensures an effective and methodical approach to data-driven decision-making.
 
 ### Project Outputs
 
@@ -44,12 +48,15 @@ The project directory is structured as follows:
 
 - `data`: Contains the historical cryptocurrency data.
 - `notebooks`: Includes Jupyter notebooks used for data analysis.
-- `visualizations`: Contains visual representations of the data.
+- `visualizations & Dashboard`: Contains visual representations of the data.
 - `results`: Contains the final recommendations and insights.
 
 ## Dependencies
 
-This project relies on Python and libraries like Pandas, NumPy, Matplotlib, and Seaborn for data analysis and visualization.
+This project relies on MySQL for data storage and table joints,
+R, Python and libraries like Pandas, NumPy, Matplotlib, and Seaborn for data analysis and visualization, and Tableau for dashboard visualization.
+
+Most analysis were done using python `[Because I am more familiar with it]` and same was done using R because it was used during the classes.
 
 ## How to Run
 
@@ -57,13 +64,14 @@ To run the project, follow these steps:
 
 1. Clone this repository to your local machine.
 2. Navigate to the project directory.
-3. Open and run the Jupyter notebooks in the `notebooks` directory.
+3. Install the libraries with `requirement.txt` file.
+   * `!pip install -r requirement.txt`
+4. Open and run the Jupyter notebooks in the `notebooks` directory.
 
 ## Contact
 
-For any questions or inquiries regarding this project, feel free to contact the project author: [Dolgoraa Banzragch](dolgormaabanzragch@gmail.com).
+For any questions or inquiries regarding this project, feel free to contact the project author: [Banza](dolgormaabanzragch@gmail.com)
 
 ---
 
 Please note that Invest INC. is a fictional company, and this project is for educational and demonstration purposes only.
-
