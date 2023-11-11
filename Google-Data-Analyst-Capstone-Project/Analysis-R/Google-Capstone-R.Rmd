@@ -3,7 +3,25 @@ title: "Google Data Analitics certificata - Capstone project"
 output: html_notebook
 ---
 
+## The Project Overview can be found [here](https://github.com/banza5123/Personal-projects/blob/main/Google-Data-Analyst-Capstone-Project/readme.md)
+
+
 ### Ask Phase
+
+In the "Ask" phase, it was decided that my primary objective is to provide Invest INC. with data-driven insights and recommendations for the optimal allocation of funds among cryptocurrencies within their portfolio. To achieve this, I will perform the following key tasks:
+
+1. **Coin Analysis**: Each cryptocurrency in the portfolio, including Bitcoin (BTC), Dogecoin, and Ravencoin, will undergo a comprehensive analysis. This analysis aims to evaluate their historical performance and identify unique characteristics that impact their suitability for the portfolio.
+
+2. **Data Collection and Preparation**: I will collect and organize historical data for these cryptocurrencies, including price trends, trading volumes, and other relevant metrics. Proper data preparation is essential to ensure the accuracy and consistency of the analysis.
+
+3. **Comparison and Optimization**: Through meticulous data analysis, I will compare the historical performance of these cryptocurrencies and their price fluctuations over time. By identifying trends and patterns, I will recommend an optimized cryptocurrency allocation strategy.
+
+**Primary Stakeholders**: The primary stakeholders of this project are the representatives of Invest INC. Their insights, goals, and feedback are crucial in shaping the analysis and recommendations, aligning them with the company's investment objectives.
+
+By adhering to a structured methodology, the aim is to provide Invest INC. with actionable insights and strategies for enhancing their cryptocurrency portfolio allocation.
+
+Please note that this project is for educational and demonstration purposes, and Invest INC. is a fictional company.
+
 
 ### Prepare Phase: Data Collection and Initial Processing
 
@@ -29,9 +47,10 @@ The subsequent steps were aimed at preparing the data for in-depth analysis by i
 
 9. **Price Data Normalization**: It's worth noting that the price data in the dataset has been normalized. Normalization allows for meaningful comparisons between different cryptocurrencies by standardizing the price values. This normalization step ensures that price data is on a consistent scale, facilitating more accurate analysis.
 
-In this R Notebook, all the analysis has been done using R programming language instead of Python. You can find the Python notebook [here](link).
+In this R Notebook, all the analysis has been done using R programming language instead of Python. You can find the Python notebook [here](https://github.com/banza5123/Personal-projects/blob/main/Google-Data-Analyst-Capstone-Project/Analysis-Python.ipynb).
 
-#### Using the data that was extracter from the SQL server [You can find the sql part here inside python notebook](Link)
+#### Using the data that was extracter from the SQL server 
+[**You can find the sql part here inside python notebook**](https://github.com/banza5123/Personal-projects/blob/main/Google-Data-Analyst-Capstone-Project/Analysis-Python.ipynb)
 
 ```{r message=TRUE, warning=TRUE, paged.print=TRUE}
 file_path <- "joined-tables.csv"
